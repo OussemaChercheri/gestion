@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.tekup.gestion.models.User;
 import com.tekup.gestion.repository.UserRepository;
+
+import ch.qos.logback.core.model.Model;
 
 @Controller
 public class ParentController {
@@ -44,16 +47,25 @@ public class ParentController {
         userRepository.save(user);
         return "Data saved Successfully!!";
     }
+    @GetMapping("/bien-list")
+    public String bienList(Model model) {
+        return "bien-list";
+    }
     //Handler for Login process
     @PostMapping("/login")
-    @ResponseBody
-    public String loginProcess(@RequestParam("email") String email,
-    @RequestParam("password") String password) {
-        User dbuser=userRepository.findByEmail(email);
-        Boolean isPasswordMatch=BCrypt.checkpw(password, dbuser.getPassword());
-        if(isPasswordMatch)
-            return "welcome to Dashboard of user " + dbuser.getEmail();
-        else
-            return "failed to login";
+public String loginProcess(@RequestParam("email") String email,
+                           @RequestParam("password") String password,
+                           RedirectAttributes redirectAttributes) {
+    User dbuser = userRepository.findByEmail(email);
+    Boolean isPasswordMatch = BCrypt.checkpw(password, dbuser.getPassword());
+
+    if (isPasswordMatch) {
+        // Redirect to "bien-list.html"
+        redirectAttributes.addFlashAttribute("user", dbuser);
+        return "redirect:/bien-list";
+    } else {
+        // Failed login
+        return "failed to login";
     }
+}
 }

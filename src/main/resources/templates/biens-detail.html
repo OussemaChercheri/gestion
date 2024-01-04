@@ -18,6 +18,10 @@
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
                                 <a class="btn btn-delete" th:href="@{/Biens/{BienId}/delete(BienId=${bien.id})}">Effacer</a>
                             </div>
+                            <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3">
+                                    <h2 class="h5">Adresse</h2>
+                            <p class="mb-0" th:text="${bien.type}"></p>
+                            </div>
                         </div>
                         <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" th:src="${bien.photourl}" alt="..." /></div>
                     </div>
