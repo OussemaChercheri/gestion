@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Page.</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<h2>Bonjour admin veuillez vous connecter</h2>
+
+<form th:action="@{/login}" method="post" th:object="${user}">
+    Entrer l'email: <input type="email" th:field="*{email}"><br><br>
+    Enter the password: <input type="password" th:field="*{password}"><br><br>
+
+    <button type="submit">Login</button>
+</form>
+</body>
+</html>

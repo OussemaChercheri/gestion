@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registration Page.</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<h2>Bonjour admin veuillez vous ajouter un autre admin</h2>
+
+<form th:action="@{/register}" method="post" th:object="${user}">
+    Entrer le nom: <input type="text" th:field="*{fullname}"><br><br>
+    Entrer l'email: <input type="email" th:field="*{email}"><br><br>
+    Enter the password: <input type="password" th:field="*{password}"><br><br>
+    
+    <button type="submit">Enrigistrer</button>
+</form>
+</body>
+</html>

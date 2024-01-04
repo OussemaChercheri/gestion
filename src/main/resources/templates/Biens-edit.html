@@ -1,0 +1,119 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+<head>
+  <title>Bien Edit</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+     
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+  <section layout:fragment="body" class="py-5">
+    <div class="container">
+      <form role="form" method="post" th:action="@{/Biens/{BienId}/edit(BienId=${Bien.id})}" th:object="${Bien}">
+        <input type="hidden" th:field="*{id}">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="labelle">labelle</label>
+
+
+            
+            <input
+                    type="text"
+                    class="form-control"
+                    id="labelle"
+                    name="labelle"
+                    th:field="*{labelle}"
+                    placeholder="labelle">
+            <p th:if="${#fields.hasErrors('labelle')}" class="text-danger" th:errors="*{labelle}"></p>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="photourl">photourl</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="photourl"
+                    name="photourl"
+                    th:field="*{photourl}"
+                    placeholder="Photo Url">
+            <p th:if="${#fields.hasErrors('photourl')}" class="text-danger" th:errors="*{photourl}"></p>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="detail">detail</label>
+          <input
+                  type="text"
+                  class="form-control"
+                  id="detail"
+                  name="detail"
+                  th:field="*{detail}"
+                  placeholder="1234 Main St">
+          <p th:if="${#fields.hasErrors('detail')}" class="text-danger" th:errors="*{detail}"></p>
+        </div>
+        <div class="form-group mb-3">
+            <label for="prix">Prix:</label>
+            <input type="text" id="prix" name="prix" th:required="required" th:field="*{prix}">
+            <p th:if="${#fields.hasErrors('prix')}" class="text-danger" th:errors="*{prix}"></p>
+        </div>
+        <div class="form-group mb-3">
+            <label for="type">Type:</label>
+            <input type="text" id="type" name="type" th:required="required" th:field="*{type}">
+            <p th:if="${#fields.hasErrors('type')}" class="text-danger" th:errors="*{type}"></p>
+        </div>
+        <div class="form-group mb-3">
+            <label for="nbpiece">Nombre de pièces:</label>
+            <input type="number" id="nbpiece" name="nbpiece" th:required="required" th:field="*{nbpiece}">
+            <p th:if="${#fields.hasErrors('nbpiece')}" class="text-danger" th:errors="*{nbpiece}"></p>
+        </div>
+        <div class="form-group mb-3">
+            <label>Choisir l'option:</label>
+            <input type="checkbox" id="louer" name="louv" value="louer" th:field="*{louv}">
+            <label for="louer" th:text="#{louer}">Louer</label>
+    
+            <input type="checkbox" id="vendre" name="louv" value="vendre" th:field="*{louv}">
+            <label for="vendre" th:text="#{vendre}">Vendre</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Editer</button>
+      </form>
+    </div>
+  </section>
+</main>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
